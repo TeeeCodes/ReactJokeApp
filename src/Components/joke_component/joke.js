@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
-
-// const URL = ('https://icanhazdadjoke.com/',{header:{Accept:"application/json"}}) 
+import './joke.css'
 
 const RandomJoke = () => {
     
-   const [joke, setJoke] = useState();
+   const [joke, setJoke] = useState([]);
 
    useEffect(() => {
-    fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello')
-        .then((response) => response.json())
-        .then((data) => {
-            setJoke();
+    fetch('https://icanhazdadjoke.com/slack')
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
             console.log(data)
+            setJoke(data[0])
         });
-        
    }, []);
 
     return(
         <div className="App">
-            test: {joke}
+            <div className="test">
+             {joke}
+             <button onClick={fetch} className="btn">
+                <p>test</p>
+             </button>
+            </div>
         </div>
     )
 }
