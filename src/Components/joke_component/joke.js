@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
 
-const URL = ('https://icanhazdadjoke.com/',{header:{Accept:"application/json"}})
+// const URL = ('https://icanhazdadjoke.com/',{header:{Accept:"application/json"}}) 
 
 const RandomJoke = () => {
-    const [joke, setJoke] = useState("");
+    
+   const [joke, setJoke] = useState();
 
    useEffect(() => {
-    const fetchData = async () => {
-        const result = await fetch(URL)
-        result.json().then(json => {
-            console.log(result)
-        })
+    fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello')
+        .then((response) => response.json())
+        .then((data) => {
+            setJoke();
+            console.log(data)
+        });
         
-        console.log(result)
-    }
-    fetchData()
    }, []);
 
-    return (
-        <button onClick={setJoke}>{joke}</button>
+    return(
+        <div className="App">
+            test: {joke}
+        </div>
     )
 }
-
-export default RandomJoke
+    
+export default RandomJoke;
