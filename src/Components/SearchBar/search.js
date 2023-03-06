@@ -13,7 +13,7 @@ function SearchBar() {
                 <input type="text" onChange={e => setTitle(e.target.value)} />
                 <div className="icon"></div>
             </div>
-            <div className="searchResult"></div>
+            <div className="searchResult">{title}</div>
         </div>
     )
 }

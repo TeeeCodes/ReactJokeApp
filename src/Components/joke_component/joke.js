@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import './joke.css'
 
-const RandomJoke = () => {
+function RandomJoke() {
     
    const [joke, setJoke] = useState([]);
 
-   useEffect(() => {
-    fetch('https://icanhazdadjoke.com/slack')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            console.log(data)
-            setJoke(data[0])
-        });
-   }, []);
+   async function jokeHandler() {
+
+     const response = await fetch('https://icanhazdadjoke.com/slack')
+     const data = await response.json();
+               console.log(data)
+               setJoke(data.text)  
+   }
+
+    useEffect(() => {
+        jokeHandler();
+    })
 
     return(
         <div className="App">
             <div className="test">
              {joke}
-             <button onClick={fetch} className="btn">
-                <p>test</p>
+             <button onClick={jokeHandler} className="btn">
+                <p>{joke}</p>
              </button>
             </div>
         </div>
