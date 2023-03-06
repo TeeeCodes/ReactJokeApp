@@ -1,5 +1,6 @@
 import './App.css';
 import RandomJoke from './Components/joke_component/joke';
+import SearchBar from './Components/SearchBar/search';
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
 
     <div className="App">
       <RandomJoke/>
+      <SearchBar/>
     </div>
   );
 }
