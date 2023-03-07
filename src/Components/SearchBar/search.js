@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState} from "react";
 import './search.css'
 
+const SearchList = () => {
+    const [list, setList] = useState()
 
-function SearchBar() {
+    useEffect(() => {
+        fetch('https://icanhazdadjoke.com/search',
+        {header: {Accept: 'application/json'}})
+        .then(res => res.json())
+        .then(json => setList(json))
+       
+    }, [])
 
-    const [title, setTitle] = useState();
-
-    fetch('https://icanhazdadjoke.com/search',
-    {header:{Accept:"application/json"}})
-    .then((res) => res.json())
-    .then((json) => console.log(json))
-    console.log(SearchBar)
-  
-
-    return (
-        <div className="search">
-            <div className="searchInputs">
-                <input type="text" onChange={e => setTitle(e.target.value)} />
-                <div className="icon"></div>
-            </div>
-            <div className="searchResult">{title}</div>
+    return(
+        <div>
+            <ul>
+                {list && list.map(list => (
+                    <li key= {list.page}>
+                        <h2>{list.name}</h2>
+                        <p>{list.term}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
 
-export default SearchBar
+
+export default SearchList
