@@ -1,28 +1,28 @@
-import React, { useEffect } from "react";
-import { useState} from "react";
+import React from "react";
+import { useState, useEffect} from "react";
 import './search.css'
 
 const SearchList = () => {
-    const [list, setList] = useState()
+    const [list, setList] = useState(1);
+    
 
     useEffect(() => {
         fetch('https://icanhazdadjoke.com/search',
-        {header: {Accept: 'application/json'}})
+        {headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            }
+        })
         .then(res => res.json())
         .then(json => setList(json))
-       
     }, [])
+    console.log(list)
 
     return(
         <div>
-            <ul>
-                {list && list.map(list => (
-                    <li key= {list.page}>
-                        <h2>{list.name}</h2>
-                        <p>{list.term}</p>
-                    </li>
-                ))}
-            </ul>
+            <button onClick={() => setList(1)}>Page 1</button>
+            
+            
         </div>
     )
 }
