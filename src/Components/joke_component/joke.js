@@ -7,23 +7,24 @@ function RandomJoke() {
 
    async function jokeHandler() {
 
+        
      const response = await fetch('https://icanhazdadjoke.com/slack')
      const data = await response.json();
                console.log(data)
-               setJoke(data.text)  
+               setJoke(data.attachments[0].fallback)  
    }
 
     useEffect(() => {
         jokeHandler();
-    })
+    }, [])
 
     return(
         <div className="App">
             <div className="test">
-             {joke}
+        
              <button onClick={jokeHandler} className="btn">
-                <p>{joke}</p>
              </button>
+                <p>{joke}</p>
             </div>
         </div>
     )

@@ -1,11 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useState} from "react";
 import './search.css'
 
 
 function SearchBar() {
 
     const [title, setTitle] = useState();
+
+    fetch('https://icanhazdadjoke.com/j/R7UfaahVfFd',
+    {header:{Accept:"application/json"}})
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+    console.log(SearchBar)
+  
 
     return (
         <div className="search">
