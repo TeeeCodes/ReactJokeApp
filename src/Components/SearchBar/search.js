@@ -7,7 +7,7 @@ function SearchBar() {
 
     const [title, setTitle] = useState();
 
-    fetch('https://icanhazdadjoke.com/j/R7UfaahVfFd',
+    fetch('https://icanhazdadjoke.com/search',
     {header:{Accept:"application/json"}})
     .then((res) => res.json())
     .then((json) => console.log(json))
